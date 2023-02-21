@@ -194,11 +194,11 @@
 #### Template Routing with Blueprints
 *Something to keep in mind is how the Jinja templates find the URLs for the registered routes in Blueprints. In an app without Blueprints, we would use something like this:*
 ```html
-    <a href="{{ url_for('hello_world')">Hello World</a>
+    <a href="{{ url_for('hello_world') }}">Hello World</a>
 ```
 *But with Blueprints, the links must be defined as:*
 ```html
-   <a href="{{ url_for('main_bp.hello_world')">Hello World</a> 
+   <a href="{{ url_for('main_bp.hello_world') }}">Hello World</a>
 ```
 *The ```main_bp``` that we used earlier to define our Blueprint--The string ```... = Blueprints('main_bp', __name__, ...)```, is the internal name that Flask uses to resolve the routes.*
 
@@ -231,7 +231,7 @@
         Hello World
    {% endblock %}
    {% block content %}
-        <a href="{{ url_for('main_bp.hello_world')">Hello World</a>
+        <a href="{{ url_for('main_bp.hello_world') }}">Hello World</a>
 
    {% endblock %}
 ```
