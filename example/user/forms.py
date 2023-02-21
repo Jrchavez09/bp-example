@@ -4,6 +4,11 @@ from wtforms.validators import DataRequired, Email, Length
 
 
 class RegisterForm(FlaskForm):
+    first_name = StringField(
+        label='First Name',
+        validators=[DataRequired(), Length(min=3)],
+        render_kw={'placeholder': 'First Name'}
+    )
     email = StringField(
         label='Email',
         validators=[DataRequired(), Email()],
