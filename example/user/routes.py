@@ -5,10 +5,12 @@ from example import bcrypt, db
 from example.user.forms import LoginForm, RegisterForm
 from example.user.models import User
 
-user_bp = Blueprint('user', __name__,
-                    template_folder='templates',
-                    static_folder='static',
-                    )
+user_bp = Blueprint(
+    'user',
+    __name__,
+    template_folder='templates',
+    static_folder='static',
+)
 
 
 @user_bp.route('/login', methods=['GET', 'POST'])

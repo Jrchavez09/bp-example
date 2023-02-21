@@ -23,11 +23,13 @@ migrate = Migrate(app, db)
 """
     register blueprints
 """
-from example.main.routes import main_bp
-from example.user.routes import user_bp
+from .main.routes import main_bp
+from .user.routes import user_bp
+from .errors.handlers import errors_bp
 
-app.register_blueprint(main_bp)
-app.register_blueprint(user_bp)
+app.register_blueprint(main_bp, url_prefix='/')
+app.register_blueprint(user_bp, url_prefix='/')
+app.register_blueprint(errors_bp)
 
 """
     flask-login
@@ -35,9 +37,8 @@ app.register_blueprint(user_bp)
 from example.user.models import User
 
 login_manager.login_view = 'user.login'
-
-
 # login_manager.login_message_category = 'info'
+
 
 @login_manager.user_loader
 def load_user(id):
@@ -49,12 +50,3 @@ def load_user(id):
 """
 with app.app_context():
     db.create_all()
-
-"""
-    error handlers
-"""
-
-
-@app.errorhandler(403)
-def forbidden_page(error):
-    render_template('errors/403.html'), 403
